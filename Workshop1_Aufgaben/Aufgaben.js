@@ -12,9 +12,9 @@ fs.readFile('wolkenkratzer.json', 'utf8', function (err, data) {
     console.log("Alle Wolkenkratzer:  ");
     for ( var x=0; x<obj.wolkenkratzer.length; x++)
     {
-        console.log("Name:  "+obj.wolkenkratzer[x].name);
-        console.log("Stadt:  "+obj.wolkenkratzer[x].stadt);
-        console.log("Hoehe:  "+obj.wolkenkratzer[x].hoehe);
+        console.log(chalk_blue("Name:  "+obj.wolkenkratzer[x].name));
+        console.log(chalk_cyan("Stadt:  "+obj.wolkenkratzer[x].stadt));
+        console.log(chalk_magenta("Hoehe:  "+obj.wolkenkratzer[x].hoehe));
         console.log("------------------------------------");
     }
 });
