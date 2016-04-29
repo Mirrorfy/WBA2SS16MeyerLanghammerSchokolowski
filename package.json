@@ -1,5 +1,5 @@
 {
-  "name": "cklein",
+  "name": "ChrisLgh",
   "version": "1.0.0",
   "description": "aufgabe1",
   "main": "aufgabe1.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nReinhardt91/WBA2SS16KruschReinhardtKlein.git"
+    "url": "git+https://github.com/Mirrorfy/WBA2SS16MeyerLanghammerSchokolowski.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nReinhardt91/WBA2SS16KruschReinhardtKlein/issues"
+    "url": "https://github.com/Mirrorfy/WBA2SS16MeyerLanghammerSchokolowski/issues"
   },
-  "homepage": "https://github.com/nReinhardt91/WBA2SS16KruschReinhardtKlein#readme",
+  "homepage": "https://github.com/Mirrorfy/WBA2SS16MeyerLanghammerSchokolowski/blob/master/README.md",
   "dependencies": {
     "chalk": "^1.1.3"
   }
