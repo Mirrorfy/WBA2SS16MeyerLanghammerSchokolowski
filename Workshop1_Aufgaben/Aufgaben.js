@@ -1,4 +1,9 @@
 var fs = require('fs');
+var chalk=require('chalk');
+var chalk_magenta=chalk.magenta;
+var chalk_cyan=chalk.cyan;
+var chalk_blue=chalk.blue;
+
 var obj;
 fs.readFile('wolkenkratzer.json', 'utf8', function (err, data) {
   if (err) throw err;
