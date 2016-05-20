@@ -1,0 +1,20 @@
+{
+  "name": "Workshop1_Aufgaben",
+  "version": "1.0.0",
+  "description": "Aufgaben für den ersten Workshop",
+  "main": "Aufgaben.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Felix Schokolowski",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mirrorfy/WBA2SS16MeyerLanghammerSchokolowski.git",
+  },
+  "bugs": {
+    "url": "https://github.com/nReinhardt91/WBA2SS16MeyerLanghammerSchokolowski/issues",
+  },
+  "homepage": "https://github.com/Mirrorfy/WBA2SS16MeyerLanghammerSchokolowski",
+}
