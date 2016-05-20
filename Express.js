@@ -9,6 +9,10 @@ var express = require ('express');
 // Anlegen eines Webservers
 var app = express();
 
+var bodyParse = require ('body-parser')
+// Parser-Objekt
+var jsonParser = bodyParser.json()
+
 // Konfiguration des Webservers
 app.use(express.static(__dirname + '/public')); // Verzeichnis für direkten Zugriff freigeben
 
@@ -22,8 +26,14 @@ app.use(function (req, res, next) { // Log mit Pfad und Zeitangabe
   next();
 });
 
+// Routing
+app.post('/anhang/ressource1', jsonParser, function (req, res) { // Erstellt einen neuen Anhang in der Liste; Parser wandeln den JSON String in eine entsprechende Variable
 
+});
 
+app.get('/liste/ressource1', function (req, res) { //Abruf der Anhangsliste
+
+});
 
 
 // Anbindung des Servers an den Port
