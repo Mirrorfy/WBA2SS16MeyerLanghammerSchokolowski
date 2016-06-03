@@ -28,33 +28,36 @@ app.use(function (req, res, next) { // Log mit Pfad und Zeitangabe
 
 // Routing
 app.post('/anhang/:ID', jsonParser, function (req, res) { // Erstellt einen neuen Anhang in der Liste; Parser wandeln den JSON String in eine entsprechende Variable
-
+// siehe hochladen eines anhanges
 });
 
-app.get('/liste/:ID', function (req, res) { //Abruf der Anhangsliste
-
+app.get('/liste', function (req, res) { //Abruf der Anhangsliste
+  res.send(liste.all());
 });
-//Geht das so überhaupt, weil eigentlich sind das ja immer die gleichen Funktionen....
+
 app.post('/notiz/:ID', function (req, res) { //Anlegen einer neuen Notiz
-
+ var notiz = notiz.create(req.body.data);  //req.body.data????
+  res.send(201, notiz);
 });
 
 app.get('/anhang/:ID', function (req, res) { //Runterladen eines Anhanges
-
+  res.send(anhang.withId(req.params.id));
 });
 
 
 app.post('/anhang/:ID', function (req, res) { //hochladen eines Anhanges
-
+ var anhang = anhang.create(req.body.data);  //req.body.data????
+  res.send(201, anhang);
 });
 
 
 app.get('/liste/:ID', function (req, res) { //Suchfunktion in der Anhangsliste
-
+ res.send(anhang.withId(req.params.id));
 });
 
 app.delete('/notiz/:ID', function (req, res) { //Löschen einer Notiz
-
+ notiz.del(req.params.id);
+  res.send(200);
 });
 
 
