@@ -34,7 +34,7 @@ app.post('/anhang/:ID', jsonParser, function (req, res) { // Erstellt einen neue
 app.get('/liste/:ID', function (req, res) { //Abruf der Anhangsliste
 
 });
-
+//Geht das so überhaupt, weil eigentlich sind das ja immer die gleichen Funktionen....
 app.post('/notiz/:ID', function (req, res) { //Anlegen einer neuen Notiz
 
 });
