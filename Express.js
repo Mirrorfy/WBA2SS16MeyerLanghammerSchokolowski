@@ -27,11 +27,33 @@ app.use(function (req, res, next) { // Log mit Pfad und Zeitangabe
 });
 
 // Routing
-app.post('/anhang/ressource1', jsonParser, function (req, res) { // Erstellt einen neuen Anhang in der Liste; Parser wandeln den JSON String in eine entsprechende Variable
+app.post('/anhang/:ID', jsonParser, function (req, res) { // Erstellt einen neuen Anhang in der Liste; Parser wandeln den JSON String in eine entsprechende Variable
 
 });
 
-app.get('/liste/ressource1', function (req, res) { //Abruf der Anhangsliste
+app.get('/liste/:ID', function (req, res) { //Abruf der Anhangsliste
+
+});
+
+app.post('/notiz/:ID', function (req, res) { //Anlegen einer neuen Notiz
+
+});
+
+app.get('/anhang/:ID', function (req, res) { //Runterladen eines Anhanges
+
+});
+
+
+app.post('/anhang/:ID', function (req, res) { //hochladen eines Anhanges
+
+});
+
+
+app.get('/liste/:ID', function (req, res) { //Suchfunktion in der Anhangsliste
+
+});
+
+app.delete('/notiz/:ID', function (req, res) { //Löschen einer Notiz
 
 });
 
