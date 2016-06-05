@@ -30,6 +30,7 @@ app.use(function (req, res, next) { // Log mit Pfad und Zeitangabe
 
 app.get('/anhang', function (req, res) { //Abruf der Anhangsliste
 //lrange gibt anzahl der keys wieder, hier werden dadurch alle aufgerufen und für jeden einzelnen wird ausgeführt, dass sie in JSON gepusht werden
+
    db.lrange('anhang:*', function(err, reply) {
                 var anhang = [];
                 reply.forEach(function(element){
@@ -41,7 +42,7 @@ app.get('/anhang', function (req, res) { //Abruf der Anhangsliste
 
 
 app.post('/notiz/:ID',jsonParser, function (req, res) { //Notiz erstellen
-//neue Notiz wird mittels JSON erstellt, incr erhöht key aitimatisch um eins, set fügt hinzu, wobei mittels stringify die javascript zeichenkette in JSON konvertiert wird
+//neue Notiz wird mittels JSON erstellt, incr erhöht key automatisch um eins, set fügt hinzu, wobei mittels stringify die javascript zeichenkette in JSON konvertiert wird
 
   var newNotiz = req.body;
     
@@ -55,7 +56,7 @@ app.post('/notiz/:ID',jsonParser, function (req, res) { //Notiz erstellen
 
 
 app.get('/Notiz/:ID', function (req, res) { //Notiz anzeigen
-//noitz mit entsprechenden parameter wird nach existenz überprüft, wenn borhanden, dann zurück gegeben, wenn nicht, dann Fehlermeldung
+//noitz mit entsprechenden parameter wird nach existenz überprüft, wenn vorhanden, dann zurückgegeben, wenn nicht, dann Fehlermeldung
    
  db.get('notiz:'+req.params.id, function(err, rep){
         if(rep){
@@ -105,8 +106,7 @@ app.get('/anhang/:ID', function (req, res) { //Suchfunktion in der Anhangsliste
 
 
 app.delete('/notiz/:ID', function (req, res) { //Löschen einer Notiz
-
-//mittels db.get überprüfung ob notiz vorhanden wenn ja, dann mittels db.del Löschungund Ausgabe von Bestätigungsmeldung, wenn nein, dann Fehlermeldung
+//mittels db.get überprüfung ob notiz vorhanden wenn ja, dann mittels db.del Löschung und Ausgabe von Bestätigungsmeldung, wenn nein, dann Fehlermeldung
 
     db.get('notiz:'+req.params.id, function(err, rep){
         if(rep){
