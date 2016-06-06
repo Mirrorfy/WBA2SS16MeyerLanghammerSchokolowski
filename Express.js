@@ -34,7 +34,7 @@ app.get('/anhang', function (req, res) { //Abruf der Anhangsliste
    db.lrange('anhang:*', function(err, reply) {
                 var anhang = [];
                 reply.forEach(function(element){
-                    anhang.push(JSON.parse(element));
+                   anhang.push(JSON.parse(element));
                 });
                 res.status(200).json(anhang);
     });
@@ -48,7 +48,7 @@ app.post('/notiz/:ID',jsonParser, function (req, res) { //Notiz erstellen
     
     db.incr('id:notiz', function(err, rep){
         newNotiz.id = rep;
-        db.set('Noitz:'+newNotiz.id, JSON.stringify(newNotiz), function(err, rep){
+        db.set('Notiz:'+newNotiz.id, JSON.stringify(newNotiz), function(err, rep){
             res.status(200).json(newNotiz);
         });
     });
@@ -63,7 +63,7 @@ app.get('/Notiz/:ID', function (req, res) { //Notiz anzeigen
             res.type('json').send(rep);
         }
         else{
-            res.status(404).type('text').send(Diese Notiz wurde nicht gefunden.);
+            res.status(404).type('text').send("Diese Notiz wurde nicht gefunden.");
         }
     });
 });
@@ -75,7 +75,7 @@ app.get('/anhang/:ID', function (req, res) { //Anhang runterladen
             res.type('json').send(rep);
         }
         else{
-            res.status(404).type('text').send(Dieser Anhang wurde nicht gefunden.);
+            res.status(404).type('text').send("Dieser Anhang wurde nicht gefunden.");
         }
     });
 });
@@ -99,7 +99,7 @@ app.get('/anhang/:ID', function (req, res) { //Suchfunktion in der Anhangsliste
             res.type('json').send(rep);
         }
         else{
-            res.status(404).type('text').send(Dieser Anhang wurde nicht gefunden.);
+            res.status(404).type('text').send("Dieser Anhang wurde nicht gefunden.");
         }
     });
 });
@@ -111,11 +111,11 @@ app.delete('/notiz/:ID', function (req, res) { //Löschen einer Notiz
     db.get('notiz:'+req.params.id, function(err, rep){
         if(rep){
             db.del('notiz:'+req.params.id, function(err, rep){
-                res.type('text').send('Notiz wurde gelöscht.');
+                res.type('text').send("Notiz wurde gelöscht.");
             });
         }
         else {
-            res.status(404).type('text').send('Notiz nicht gefunden');
+            res.status(404).type('text').send("Notiz nicht gefunden");
         }
     });
 });
