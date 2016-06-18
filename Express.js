@@ -40,6 +40,55 @@ app.get('/anhang', function (req, res) { //Abruf der Anhangsliste
     });
 });
 
+app.get('/anhang/:ID', function (req, res) { //Anhang runterladen
+    db.get('anhang:'+req.params.id, function(err, rep){
+        if(rep){
+            res.type('json').send(rep);
+        }
+        else{
+            res.status(404).type('text').send("Dieser Anhang wurde nicht gefunden.");
+        }
+    });
+});
+
+//ist dies noch nötig, da es sich ja um das gleiche, wie bei dem einzelnen Abruf eines Anhanges handelt?
+app.get('/anhang/:ID', function (req, res) { //Suchfunktion in der Anhangsliste
+    db.get('anhang:'+req.params.id, function(err, rep){
+        if(rep){
+            res.type('json').send(rep);
+        }
+        else{
+            res.status(404).type('text').send("Dieser Anhang wurde nicht gefunden.");
+        }
+    });
+});
+
+
+app.post('/anhang/:ID',jsonParser, function (req, res) { //Anhang zufügen
+  var newAnhang = req.body;
+    
+    db.incr('id:anhang', function(err, rep){
+        newAnhang.id = rep;
+        db.set('Anhang:'+newAnhang.id, JSON.stringify(newAnhang), function(err, rep){
+            res.status(200).json(newAnhang);
+        });
+    });1
+});
+
+
+
+
+
+app.get('/notiz', function (req, res) { //Abruf der Notizliste
+
+   db.lrange('notiz:*', function(err, reply) {
+                var notiz = [];
+                reply.forEach(function(element){
+                   notiz.push(JSON.parse(element));
+                });
+                res.status(200).json(notiz);
+    });
+});
 
 app.post('/notiz/:ID',jsonParser, function (req, res) { //Notiz erstellen
 //neue Notiz wird mittels JSON erstellt, incr erhöht key automatisch um eins, set fügt hinzu, wobei mittels stringify die javascript zeichenkette in JSON konvertiert wird
@@ -69,42 +118,6 @@ app.get('/Notiz/:ID', function (req, res) { //Notiz anzeigen
 });
 
 
-app.get('/anhang/:ID', function (req, res) { //Anhang runterladen
-    db.get('anhang:'+req.params.id, function(err, rep){
-        if(rep){
-            res.type('json').send(rep);
-        }
-        else{
-            res.status(404).type('text').send("Dieser Anhang wurde nicht gefunden.");
-        }
-    });
-});
-
-
-app.post('/anhang/:ID',jsonParser, function (req, res) { //Anhang zufügen
-  var newAnhang = req.body;
-    
-    db.incr('id:anhang', function(err, rep){
-        newAnhang.id = rep;
-        db.set('Anhang:'+newAnhang.id, JSON.stringify(newAnhang), function(err, rep){
-            res.status(200).json(newAnhang);
-        });
-    });1
-});
-
-//ist dies noch nötig, da es sich ja um das gleiche, wie bei dem einzelnen Abruf eines Anhanges handelt?
-app.get('/anhang/:ID', function (req, res) { //Suchfunktion in der Anhangsliste
-    db.get('anhang:'+req.params.id, function(err, rep){
-        if(rep){
-            res.type('json').send(rep);
-        }
-        else{
-            res.status(404).type('text').send("Dieser Anhang wurde nicht gefunden.");
-        }
-    });
-});
-
-
 app.delete('/notiz/:ID', function (req, res) { //Löschen einer Notiz
 //mittels db.get überprüfung ob notiz vorhanden wenn ja, dann mittels db.del Löschung und Ausgabe von Bestätigungsmeldung, wenn nein, dann Fehlermeldung
 
@@ -119,6 +132,8 @@ app.delete('/notiz/:ID', function (req, res) { //Löschen einer Notiz
         }
     });
 });
+
+//vllt noch Notiz bearbeiten?!
 
 
 // Anbindung des Servers an den Port
