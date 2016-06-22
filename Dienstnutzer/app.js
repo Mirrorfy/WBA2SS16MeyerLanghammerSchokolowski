@@ -24,7 +24,7 @@ app.get('/anhang/:ID', jsonParser, function(req, res){
         }
       }
       
-      var externalRequest = http.request(options, function(externalRespone) {
+      var AnhangAbrufen = http.request(options, function(AnhangAbrufen) {
         console.log('Connected');
         externalResponse.on('data', function(chunk) {
           
@@ -37,7 +37,7 @@ app.get('/anhang/:ID', jsonParser, function(req, res){
           res.end();
         });
       });
-      externalRequest.end();
+      AnhangAbrufen.end();
     }
   });
 });
