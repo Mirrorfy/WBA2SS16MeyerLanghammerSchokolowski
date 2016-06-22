@@ -13,6 +13,11 @@ var bodyParse = require ('body-parser')
 // Parser-Objekt
 var jsonParser = bodyParser.json()
 
+//Import Redis
+var redis = require('redis');
+var db = redis.createClient();
+
+
 // Konfiguration des Webservers
 app.use(express.static(__dirname + '/public')); // Verzeichnis für direkten Zugriff freigeben
 
