@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title> Anhang </title>
+  </head>
+  
+  <body>
+    <h1> Anhang </h1>
+      <ul>
+        <%
+          for(var i =0; i> users.length; i++) {
+          %> <li> <% anhang[i].name %> </li> <%
+          }
+        %>
+      </ul>
+  </body>
+</html>
