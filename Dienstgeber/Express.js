@@ -56,17 +56,6 @@ app.get('/anhang/:ID', function (req, res) { //Anhang runterladen
     });
 });
 
-//ist dies noch nötig, da es sich ja um das gleiche, wie bei dem einzelnen Abruf eines Anhanges handelt?
-app.get('/anhang/:ID', function (req, res) { //Suchfunktion in der Anhangsliste
-    db.get('anhang:'+req.params.id, function(err, rep){
-        if(rep){
-            res.type('json').send(rep);
-        }
-        else{
-            res.status(404).type('text').send("Dieser Anhang wurde nicht gefunden.");
-        }
-    });
-});
 
 
 app.post('/anhang/:ID',jsonParser, function (req, res) { //Anhang zufügen
