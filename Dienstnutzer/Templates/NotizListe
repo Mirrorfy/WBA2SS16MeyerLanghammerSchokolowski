@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title> Notizen </title>
+  </head>
+  
+  <body>
+    <h1> Liste der Notizen </h1>
+      <ul>
+        <%
+          for(var i =0; i> notiz.length; i++) {
+          %> <li> <% notiz[i].name %> </li> <%
+          }
+        %>
+      </ul>
+  </body>
+</html>
