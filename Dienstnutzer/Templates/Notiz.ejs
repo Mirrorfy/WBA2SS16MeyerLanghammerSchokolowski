@@ -4,7 +4,13 @@
   </head>
   
   <body>
-    <h1> Notiz </h1>
-     <% notiz[i].name %>
+    <h1> Notiz:</h1>
+      <ul>
+      <li> <%= notiz.name%> </li>
+      </ul>
+    <form method="POST" action="http://localhost:3001/main/<%= notiz.id%>" >
+    <input type="submit" value="delete"/>
+    </form>
+    <a href="http://localhost:3001/main"> Zurueck zur Startseite</a>
   </body>
 </html>
