@@ -2,17 +2,22 @@
 
 <html>
   <head>
-    <title> Notizen </title>
+    <title> Main </title>
   </head>
   
   <body>
-    <h1> Liste der Notizen </h1>
-      <ul>
-        <%
-          for(var i =0; i> notiz.length; i++) {
-          %> <li> <% notiz[i].name %> </li> <%
-          }
-        %>
+    <h1> Aktuellen Notizen </h1>
+     <ul>
+        <% for(var i=0; i<notizen.length; i++) {%>
+        <li> <a href="<%= notizen[i].uri %>"> <%= notizen[i].name%> </a>
+        </li>
+        <% } %>
       </ul>
+    
+     <div class="container-fluid panel panel-default dashboard-container">
+      <div class="row">
+        <a href="http://localhost:3001/AnhangListe.ejs"><div class="col-sm-6">alle Anhänge</div> </a>
+        <a href="http://localhost:3001/newNotiz.ejs"><div class="col-sm-6">neue Notiz posten</div> </a>
+      </div>
   </body>
 </html>
