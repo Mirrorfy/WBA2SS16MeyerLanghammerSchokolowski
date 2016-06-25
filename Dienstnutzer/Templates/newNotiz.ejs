@@ -1,1 +1,33 @@
-
+<html>
+  <head>
+    <title>Neue Noitz</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
+    <script>
+      $(neu).ready(function(){
+      var name
+      $("#submit").click(function(){
+      name=$("#name").val();
+      $.post("http://localhost:3000/main",{name: name}, function(data){
+      if(data==='done')
+        {
+          alert("login success");
+        }       
+      });
+    });
+    });
+    </script>
+  </head>
+  
+  <body>
+  <h1>Add Rezept</h1>
+    <hr>
+    <form id="neu" name="notizForm" action="http://localhost:3001/main" method="post">
+    <p>Notiz:</p>
+    <textarea id="notiz" name="notiz"></textarea>
+    <br></br>
+    <input id="submit" type="submit" value="Create">
+    </form>
+    
+  <a href="http://localhost:3001/main.ejs"> Zurueck zur Startseite</a>
+</body>
+</html>
