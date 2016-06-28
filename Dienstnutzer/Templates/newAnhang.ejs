@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Neuer Anhang</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
+    <script>
+      $(neu).ready(function(){
+      var name
+      $("#submit").click(function(){
+      name=$("#name").val();
+      $.post("http://localhost:3000/AnhangListe.ejs",{name: name}, function(data){
+      if(data==='done')
+        {
+          alert("login success");
+        }       
+      });
+    });
+    });
+    </script>
+  </head>
+  
+  <body>
+  <h1>Anhang hinzufügen</h1>
+    <hr>
+ <form action="#" method="post" enctype="multipart/form-data">
+		<p> Datei auswählen:
+			<br>
+			<input name="Datei" type="file" size="50" accept="text/*,image/*"> </p>
+		<button type="button"> Hochladen </button>
+	</form>
+    
+    
+  <a href="http://localhost:3001/main.ejs"> Zurueck zur Startseite</a>
+</body>
+</html>
