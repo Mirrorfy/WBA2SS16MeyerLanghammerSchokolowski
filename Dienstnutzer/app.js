@@ -10,7 +10,6 @@ var app = express();
 
 // alle Notizen aufrufen (direkt auf der main)
 app.get('/Notiz', jsonParser, function(req, res){
-  var NotizID = req.param('id');
   fs.readFile('./main.ejs', {encoding: 'utf-8'}, function(err, filestring){
     if (err) {
       throw err;
@@ -112,6 +111,41 @@ app.post('/Notiz/:ID', jsonParser, function(req, res){
   });
 });
 
+//Notiz löschen
+app.post('/Notiz/:ID', jsonParser, function(req, res){
+  var NotizID = req.param('id');
+  fs.readFile('./Notiz.ejs', {encoding: 'utf-8'}, function(err, filestring){
+    if (err) {
+      throw err;
+    } else {
+      var options = {
+        host: 'localhost',
+        port: 3000,
+        path: '/Notiz/:ID',
+        method: 'DELETE',
+        headers: {
+          accept: 'application/json'
+        }
+      }
+      
+      
+      var externalRequest = http.request(options, function(externalResponse) {
+        console.log('Notiz gelöscht!');
+        externalResponse.on('data', function(chunk) {
+          
+          var notizdata = JSON.parse(chunk);
+          
+          var html = ejs.render(filestring; notizdata);
+          res.setHeader('content-type', 'text/html');
+          res.writeHead(200);
+          res.write(html);
+          res.end();
+        });
+      });
+      externalRequest.end();
+    }
+  });
+});
 
 
 
@@ -134,7 +168,7 @@ app.get('/anhang/:ID', jsonParser, function(req, res){
         }
       }
       
-      var externalRequest = http.request(options, function(AnhangAbrufen) {
+      var externalRequest = http.request(options, function(externalResponse) {
         console.log('Connected');
         externalResponse.on('data', function(chunk) {
           
@@ -151,6 +185,79 @@ app.get('/anhang/:ID', jsonParser, function(req, res){
     }
   });
 });
+
+
+
+// alle Anhänge aufrufen
+app.get('/anhang', jsonParser, function(req, res){
+  fs.readFile('./AnhangListe.ejs', {encoding: 'utf-8'}, function(err, filestring){
+    if (err) {
+      throw err;
+    } else {
+      var options = {
+        host: 'localhost',
+        port: 3000,
+        path: '/anhang',
+        method: 'GET',
+        headers: {
+          accept: 'application/json'
+        }
+      }
+      
+      var externalRequest = http.request(options, function(externalResponse) {
+        console.log('Connected');
+        externalResponse.on('data', function(chunk) {
+          
+          var anhangdata = JSON.parse(chunk);
+          
+          var html = ejs.render(filestring; anhangdata);
+          res.setHeader('content-type', 'text/html');
+          res.writeHead(200);
+          res.write(html);
+          res.end();
+        });
+      });
+      externalRequest.end();
+    }
+  });
+});
+
+
+// Anhang zufügen
+app.post('/Anhang/:ID', jsonParser, function(req, res){
+  fs.readFile('./newAnhang.ejs', {encoding: 'utf-8'}, function(err, filestring){
+    if (err) {
+      throw err;
+    } else {
+      var options = {
+        host: 'localhost',
+        port: 3000,
+        path: '/Anhang/:ID',
+        method: 'POST',
+        headers: {
+          accept: 'application/json'
+        }
+      }
+      
+      var externalRequest = http.request(options, function(externalResponse) {
+        console.log('post Notiz');
+        externalResponse.on('data', function(chunk) {
+          var newAnhang = JSON.parse(chunk);
+           var html=ejs.render(filestring, {anhang: newAnhang, filename: "./Templates/newAnhang.ejs"});
+          res.setHeader('content-type', 'text/html');
+          res.writeHead(200);
+          res.write(html);
+          res.end();
+        });
+      });
+      externalRequest.end();
+    }
+  });
+});
+
+
+
+
 
 app.listen(3001, function(){
   console.log("Server listens on Port 3000");
