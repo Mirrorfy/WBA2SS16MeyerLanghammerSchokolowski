@@ -4,7 +4,13 @@
   </head>
   
   <body>
-    <h1> Anhang </h1>
-     <% anhang[i].name %>
+   <h1> Anhang:</h1>
+      <ul>
+      <li> <%= anhang.name%> </li>
+      </ul>
+    <form method="POST" action="http://localhost:3001/AnhangListe.ejs/<%= anhang.id%>" >
+    </form>
+    
+    <a href="http://localhost:3001/main"> Zurück zur Startseite</a>
   </body>
 </html>
