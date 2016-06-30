@@ -256,9 +256,9 @@ app.post('/Anhang/:ID', jsonParser, function(req, res){
 });
 
 
-// alle Kommentare aufrufen 
+// alle Kommentare aufrufen in Notiz.ejs direkt unter der entsprechend kommentierten Notiz
 app.get('/Kommentar', jsonParser, function(req, res){
-  fs.readFile('./KommentarListe.ejs', {encoding: 'utf-8'}, function(err, filestring){
+  fs.readFile('./Notiz.ejs', {encoding: 'utf-8'}, function(err, filestring){
     if (err) {
       throw err;
     } else {
