@@ -127,7 +127,57 @@ app.delete('/notiz/:ID', function (req, res) { //Löschen einer Notiz
     });
 });
 
-//vllt noch Notiz bearbeiten?!
+
+app.get('/Kommentar', function (req, res) { //Abruf der Kommentarliste
+
+   db.lrange('Kommentar:*', function(err, reply) {
+                var Kommentar = [];
+                reply.forEach(function(element){
+                   Kommentar.push(JSON.parse(element));
+                });
+                res.status(200).json(Kommentar);
+    });
+});
+
+app.post('/Kommentar/:ID',jsonParser, function (req, res) { //Kommentar erstellen
+
+  var newKommentar = req.body;
+    
+    db.incr('id:Kommentar', function(err, rep){
+        newNotiz.id = rep;
+        db.set('Kommentar:'+newKommentar.id, JSON.stringify(newKommentar), function(err, rep){
+            res.status(200).json(newKommentar);
+        });
+    });
+});
+
+
+app.get('/Kommentar/:ID', function (req, res) { //Kommentar anzeigen
+
+ db.get('Kommentar:'+req.params.id, function(err, rep){
+        if(rep){
+            res.type('json').send(rep);
+        }
+        else{
+            res.status(404).type('text').send("Dieser Kommentar wurde nicht gefunden.");
+        }
+    });
+});
+
+
+app.delete('/Kommentar/:ID', function (req, res) { //Löschen Kommentar
+
+    db.get('Kommentar:'+req.params.id, function(err, rep){
+        if(rep){
+            db.del('Kommentar:'+req.params.id, function(err, rep){
+                res.type('text').send("Kommentar wurde gelöscht.");
+            });
+        }
+        else {
+            res.status(404).type('text').send("Kommentar nicht gefunden");
+        }
+    });
+});
 
 
 // Anbindung des Servers an den Port
