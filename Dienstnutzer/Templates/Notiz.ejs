@@ -15,6 +15,15 @@
         <input type="submit" value="löschen" style="width: 200px; height:30ps"/>
     </form>
     
+      <a href="http://localhost:3001/newKommentar.ejs"><div class="col-sm-6">neuer Kommentar</div> </a>
+    <h1>Kommentare: </h1>
+         <ul>
+        <% for(var i=0; i<Kommentar.length; i++) {%>
+        <li> <a href="<%= Kommentar[i].uri %>"> <%= Kommentar[i].name%> </a>
+        </li>
+        <% } %>
+      </ul>
+    
     <a href="http://localhost:3001/main.ejs"> Zurueck zur Startseite</a>
   </body>
 </html>
