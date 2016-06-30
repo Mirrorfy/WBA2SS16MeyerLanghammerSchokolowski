@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title> Liste der Kommentare </title>
+  </head>
+  
+  <body>
+    <h1> Alle Kommentare </h1>
+     <ul>
+        <% for(var i=0; i<Kommentar.length; i++) {%>
+        <li> <a href="<%= Kommentar[i].uri %>"> <%= Kommentar[i].name%> </a>
+        </li>
+        <% } %>
+      </ul>
+  </body>
+</html>
