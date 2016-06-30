@@ -1,0 +1,16 @@
+{
+  "name": "Dienstgeber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Express.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "MeyerLanghammerSchokolowski",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mirrorfy/WBA2SS16MeyerLanghammerSchokolowski/tree/master/Dienstgeber"
+  },
+}
