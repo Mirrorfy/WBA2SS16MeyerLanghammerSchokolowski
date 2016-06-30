@@ -256,7 +256,144 @@ app.post('/Anhang/:ID', jsonParser, function(req, res){
 });
 
 
+// alle Kommentare aufrufen 
+app.get('/Kommentar', jsonParser, function(req, res){
+  fs.readFile('./KommentarListe.ejs', {encoding: 'utf-8'}, function(err, filestring){
+    if (err) {
+      throw err;
+    } else {
+      var options = {
+        host: 'localhost',
+        port: 3000,
+        path: '/Kommentar',
+        method: 'GET',
+        headers: {
+          accept: 'application/json'
+        }
+      }
+      
+      
+      var externalRequest = http.request(options, function(externalResponse) {
+        console.log('Connected');
+        externalResponse.on('data', function(chunk) {
+          
+          var kommentardata = JSON.parse(chunk);
+          
+          var html = ejs.render(filestring; kommentardata);
+          res.setHeader('content-type', 'text/html');
+          res.writeHead(200);
+          res.write(html);
+          res.end();
+        });
+      });
+      externalRequest.end();
+    }
+  });
+});
 
+
+// einzelnen Kommentar aufrufen
+app.get('/Kommentar/:ID', jsonParser, function(req, res){
+  var KommentarID = req.param('id');
+  fs.readFile('./Kommentar.ejs', {encoding: 'utf-8'}, function(err, filestring){
+    if (err) {
+      throw err;
+    } else {
+      var options = {
+        host: 'localhost',
+        port: 3000,
+        path: '/Kommentar/:ID',
+        method: 'GET',
+        headers: {
+          accept: 'application/json'
+        }
+      }
+      
+      var externalRequest = http.request(options, function(externalResponse) {
+        console.log('Connected');
+        externalResponse.on('data', function(chunk) {
+          
+          varkommentardata = JSON.parse(chunk);
+          
+          var html = ejs.render(filestring; kommentardata);
+          res.setHeader('content-type', 'text/html');
+          res.writeHead(200);
+          res.write(html);
+          res.end();
+        });
+      });
+      externalRequest.end();
+    }
+  });
+});
+
+// Kommentar zufügen
+app.post('/Kommentar/:ID', jsonParser, function(req, res){
+  fs.readFile('./newKommentar.ejs', {encoding: 'utf-8'}, function(err, filestring){
+    if (err) {
+      throw err;
+    } else {
+      var options = {
+        host: 'localhost',
+        port: 3000,
+        path: '/Kommentar/:ID',
+        method: 'POST',
+        headers: {
+          accept: 'application/json'
+        }
+      }
+      
+      var externalRequest = http.request(options, function(externalResponse) {
+        console.log('post Kommentar');
+        externalResponse.on('data', function(chunk) {
+          var newKommentar = JSON.parse(chunk);
+           var html=ejs.render(filestring, {Kommentar: newKommentar, filename: "./Templates/newKommentar.ejs"});
+          res.setHeader('content-type', 'text/html');
+          res.writeHead(200);
+          res.write(html);
+          res.end();
+        });
+      });
+      externalRequest.end();
+    }
+  });
+});
+
+//Kommentar löschen
+app.post('/Kommentar/:ID', jsonParser, function(req, res){
+  var KommentarID = req.param('id');
+  fs.readFile('./Kommentar.ejs', {encoding: 'utf-8'}, function(err, filestring){
+    if (err) {
+      throw err;
+    } else {
+      var options = {
+        host: 'localhost',
+        port: 3000,
+        path: '/Kommentar/:ID',
+        method: 'DELETE',
+        headers: {
+          accept: 'application/json'
+        }
+      }
+      
+      
+      var externalRequest = http.request(options, function(externalResponse) {
+        console.log('Kommentar gelöscht!');
+        externalResponse.on('data', function(chunk) {
+          
+          var notizdata = JSON.parse(chunk);
+          
+          var html = ejs.render(filestring; notizdata);
+          res.setHeader('content-type', 'text/html');
+          res.writeHead(200);
+          res.write(html);
+          res.end();
+        });
+      });
+      externalRequest.end();
+    }
+  });
+});
 
 
 app.listen(3001, function(){
