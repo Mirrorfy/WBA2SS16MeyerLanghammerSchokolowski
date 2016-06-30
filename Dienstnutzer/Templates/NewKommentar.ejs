@@ -1,0 +1,35 @@
+
+<html>
+  <head>
+    <title>Neuer Kommentar</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
+    <script>
+      $(neu).ready(function(){
+      var name
+      $("#submit").click(function(){
+      name=$("#name").val();
+      $.post("http://localhost:3000/KommentarListe.ejs",{name: name}, function(data){
+      if(data==='done')
+        {
+          alert("login success");
+        }       
+      });
+    });
+    });
+    </script>
+  </head>
+  
+  <body>
+  <h1>Kommentar hinzufügen</h1>
+    <hr>
+    <form id="neu" name="KommentarForm" action="http://localhost:3001/KommentarListe.ejs" method="post">
+    <p>Kommentar:</p>
+    <textarea id="Kommentar" name="Kommentar"></textarea>
+    <br></br>
+    <input id="submit" type="submit" value="Create">
+    </form>
+    
+    
+  <a href="http://localhost:3001/main.ejs"> Zurueck zur Startseite</a>
+</body>
+</html>
