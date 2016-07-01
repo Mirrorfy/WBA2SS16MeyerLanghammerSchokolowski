@@ -12,7 +12,7 @@
     <form method="POST" action="http://localhost:3001/KommentarListe.ejs/<%= Kommentar.id%>" >
     </form>
     <!-- Nach dem Löschen gehts zurück zur Übersicht/Startseite --> 
-   <form method="POST" action="http://localhost:3001/main.ejs/<%= Kommentar.id%>" >
+   <form method="DELETE" action="http://localhost:3001/main.ejs/<%= Kommentar.id%>" >
         <input type="submit" value="löschen" style="width: 200px; height:30ps"/>
     </form>
     
