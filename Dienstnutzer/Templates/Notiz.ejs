@@ -8,14 +8,12 @@
       <ul>
       <li> <%= notiz.name%> </li>
       </ul>
-    <form method="POST" action="http://localhost:3001/main/<%= notiz.id%>" >
-    </form>
     <!-- Nach dem Löschen gehts zurück zur Übersicht/Startseite --> 
    <form method="POST" action="http://localhost:3001/main.ejs/<%= notiz.id%>" >
         <input type="submit" value="löschen" style="width: 200px; height:30ps"/>
     </form>
     
-      <a href="http://localhost:3001/newKommentar.ejs"><div class="col-sm-6">neuer Kommentar</div> </a>
+      <a href="http://localhost:3001/newKommentar.ejs">neuer Kommentar</a>
     <h1>Kommentare: </h1>
          <ul>
         <% for(var i=0; i<Kommentar.length; i++) {%>
