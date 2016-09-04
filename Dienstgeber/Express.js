@@ -56,6 +56,13 @@ app.get('/anhang/:ID', function (req, res) { //Anhang runterladen
     });
 });
 
+// Pusher hinzufügen
+$pusher = new Pusher($app_key, $app_secret, $app_id);
+
+$data['message'] = 'Neue Notiz veröffentlicht.';
+
+$pusher->trigger('notifications', 'new_notification', $data);
+
 
 
 app.post('/anhang/:ID',jsonParser, function (req, res) { //Anhang zufügen
