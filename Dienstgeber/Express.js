@@ -128,7 +128,7 @@ app.delete('/notiz/:ID', function (req, res) { //Löschen einer Notiz
 });
 
 
-app.get('/Kommentar', function (req, res) { //Abruf der Kommentarliste
+app.get('/notiz/:ID/Kommentar', function (req, res) { //Abruf der Kommentarliste
 
    db.lrange('Kommentar:*', function(err, reply) {
                 var Kommentar = [];
@@ -139,7 +139,7 @@ app.get('/Kommentar', function (req, res) { //Abruf der Kommentarliste
     });
 });
 
-app.post('/Kommentar/:ID',jsonParser, function (req, res) { //Kommentar erstellen
+app.post('/notiz/:ID/Kommentar/:ID',jsonParser, function (req, res) { //Kommentar erstellen
 
   var newKommentar = req.body;
     
@@ -152,7 +152,7 @@ app.post('/Kommentar/:ID',jsonParser, function (req, res) { //Kommentar erstelle
 });
 
 
-app.get('/Kommentar/:ID', function (req, res) { //Kommentar anzeigen
+app.get('/notiz/:ID/Kommentar/:ID', function (req, res) { //Kommentar anzeigen
 
  db.get('Kommentar:'+req.params.id, function(err, rep){
         if(rep){
@@ -165,7 +165,7 @@ app.get('/Kommentar/:ID', function (req, res) { //Kommentar anzeigen
 });
 
 
-app.delete('/Kommentar/:ID', function (req, res) { //Löschen Kommentar
+app.delete('/notiz/:ID/Kommentar/:ID', function (req, res) { //Löschen Kommentar
 
     db.get('Kommentar:'+req.params.id, function(err, rep){
         if(rep){
