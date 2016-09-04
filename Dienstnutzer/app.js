@@ -257,7 +257,7 @@ app.post('/Anhang/:ID', jsonParser, function(req, res){
 
 
 // alle Kommentare aufrufen in Notiz.ejs direkt unter der entsprechend kommentierten Notiz
-app.get('/Kommentar', jsonParser, function(req, res){
+app.get('/notiz/:ID/Kommentar', jsonParser, function(req, res){
   fs.readFile('./Notiz.ejs', {encoding: 'utf-8'}, function(err, filestring){
     if (err) {
       throw err;
@@ -293,7 +293,7 @@ app.get('/Kommentar', jsonParser, function(req, res){
 
 
 // einzelnen Kommentar aufrufen
-app.get('/Kommentar/:ID', jsonParser, function(req, res){
+app.get('/notiz/:ID/Kommentar/:ID', jsonParser, function(req, res){
   var KommentarID = req.param('id');
   fs.readFile('./Kommentar.ejs', {encoding: 'utf-8'}, function(err, filestring){
     if (err) {
@@ -328,7 +328,7 @@ app.get('/Kommentar/:ID', jsonParser, function(req, res){
 });
 
 // Kommentar zufügen
-app.post('/Kommentar/:ID', jsonParser, function(req, res){
+app.post('/notiz/:ID/Kommentar/:ID', jsonParser, function(req, res){
   fs.readFile('./newKommentar.ejs', {encoding: 'utf-8'}, function(err, filestring){
     if (err) {
       throw err;
@@ -360,7 +360,7 @@ app.post('/Kommentar/:ID', jsonParser, function(req, res){
 });
 
 //Kommentar löschen
-app.post('/Kommentar/:ID', jsonParser, function(req, res){
+app.post('/notiz/:ID/Kommentar/:ID', jsonParser, function(req, res){
   var KommentarID = req.param('id');
   fs.readFile('./Kommentar.ejs', {encoding: 'utf-8'}, function(err, filestring){
     if (err) {
